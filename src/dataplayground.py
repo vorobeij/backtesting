@@ -2,7 +2,7 @@
 # !pip install mplfinance
 import pandas as pd
 import yfinance as yf
-from datetime import datetime
+from datetime import datetime, time
 
 
 def loadData(ticker='BTC-USD', start_date=datetime(2015, 1, 1), end_date=datetime.now()):
@@ -12,10 +12,18 @@ def loadData(ticker='BTC-USD', start_date=datetime(2015, 1, 1), end_date=datetim
 
 def csv_data(ticker):
     try:
-        return pd.read_csv("data/" + ticker + ".csv", index_col=0, parse_dates=True, infer_datetime_format=True)
+        data = pd.read_csv("data/" + ticker + ".csv", index_col=0, parse_dates=True, infer_datetime_format=True)
+        if data.iloc[-1].name == datetime.combine(datetime.now(), time.min):
+            return data
+        else:
+            return loadAndGet(ticker)
     except:
-        loadData(ticker)
-        return pd.read_csv("data/" + ticker + ".csv", index_col=0, parse_dates=True, infer_datetime_format=True)
+        return loadAndGet(ticker)
+
+
+def loadAndGet(ticker):
+    loadData(ticker)
+    return pd.read_csv("data/" + ticker + ".csv", index_col=0, parse_dates=True, infer_datetime_format=True)
 
 
 BTC = csv_data("BTC-USD")
