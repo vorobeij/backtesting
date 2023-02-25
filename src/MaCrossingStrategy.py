@@ -27,8 +27,8 @@ def printCharts(data, name):
     print("=============== " + name + " ===============")
     bt = Backtest(data, MaCrossingStrategy, cash=10_000, commission=.004)
     stats = bt.run()
-    print(stats.iloc[6:11])
-    stats.to_csv("output/" + name + ".csv")
+    # print(stats.iloc[6:11])
+    # stats.to_csv("output/" + name + ".csv")
     bt.plot(filename="output/" + name, superimpose=False)
 
 
