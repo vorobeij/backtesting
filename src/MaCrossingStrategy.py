@@ -3,7 +3,7 @@ import time
 from backtesting import Backtest
 from backtesting.lib import TrailingStrategy
 
-import src.dataplayground as data
+import dataplayground as data
 
 
 class MaCrossingStrategy(TrailingStrategy):
