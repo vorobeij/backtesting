@@ -1,0 +1,6 @@
+setuptools~=67.4.0
+packaging~=23.0
+pandas~=1.5.3
+seaborn~=0.12.2
+Backtesting~=0.3.3
+yfinance~=0.2.12
